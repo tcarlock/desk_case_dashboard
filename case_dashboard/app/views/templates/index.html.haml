@@ -1,0 +1,16 @@
+.row
+  .large-12.columns
+    %h1 Desk-Quiz
+    %h3.subheader
+      Welcome to the Cases Dashboard
+    %hr
+.row
+  %table
+    %thead
+      %th Title
+      %th
+    %tbody
+      %tr(ng-repeat="case in cases")
+        %td {{case.title}}
+        %td
+          a.button.small.alert Tag this case
