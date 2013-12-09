@@ -4,6 +4,7 @@ gem 'rails', '3.2.12'
 gem 'jquery-rails'
 gem 'oauth'
 gem 'hashie'
+gem 'thin'
 
 group :assets do
   gem 'sass-rails'
@@ -20,7 +21,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-debugger'
   gem 'turn', :require => false
-  gem 'thin'
   gem 'better_errors'
   gem 'binding_of_caller'
 end
