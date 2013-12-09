@@ -22,7 +22,7 @@ module API
     protected
 
     def create_resource(resource, params)
-      response = Client.connection.post "#{API::Client.api_url}/#{resource}", params
+      response = Client.connection.post "#{API::Client.api_url}/#{resource}", params.to_json
 
       case response.code.to_i
       when (400..599)

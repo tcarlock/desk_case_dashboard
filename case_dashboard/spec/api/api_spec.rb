@@ -36,7 +36,7 @@ describe "create new label" do
   let(:label_params) { {"name" => "MyLabel", "description" => "A Test Label", "types" =>  ["case", "macro"], "color" =>  "blue"} }
 
   before do
-    expect(API::Client.connection).to receive(:post).with("#{API::Client.api_url}/labels", label_params).and_return(response_double)
+    expect(API::Client.connection).to receive(:post).with("#{API::Client.api_url}/labels", label_params.to_json).and_return(response_double)
   end
 
   context "success response" do

@@ -13,9 +13,9 @@ app.config ($locationProvider, $routeProvider) ->
 
   $routeProvider.when '/', templateUrl: '/templates/index', controller: 'IndexController'
 
-app.controller 'IndexController', ($scope, Case, Label, labelTypes, labelColors) ->
+app.controller 'IndexController', ($scope, Case, Label, labelTypes, labelColors, $timeout) ->
   $scope.view = 'manage_labels'
-  $scope.displayLabelEditor = true
+  $scope.displayLabelEditor = false
 
   $scope.views = [
     {
@@ -37,13 +37,31 @@ app.controller 'IndexController', ($scope, Case, Label, labelTypes, labelColors)
     )[0]
 
   $scope.showLabelEditor = ->
-    $scope.initLabel()
+    $scope.init()
     $scope.displayLabelEditor = true
 
   $scope.labelColors = labelColors
   $scope.labelTypes = labelTypes
 
+  $scope.saveLabel = ->
+    $scope.saveStatus = "Saving..."
+    Label.save($scope.newLabel, ->
+      $scope.init()
+      $scope.displayLabelEditor = false
+    , ->
+      $scope.saveStatus = "We're sorry. There was a problem saving this label."
+
+      $timeout ->
+        $scope.saveStatus = ''
+      , 2500
+    )
+
+  $scope.cancelLabel = ->
+    $scope.initLabel()
+    $scope.displayLabelEditor = false
+
   $scope.initLabel = ->
+    $scope.saveStatus = ''
     $scope.newLabel =
       name: ''
       description: ''
@@ -51,19 +69,13 @@ app.controller 'IndexController', ($scope, Case, Label, labelTypes, labelColors)
       color: 'default'
       type: 'case'
 
-  $scope.saveLabel = ->
-    Label.save $scope.newLabel, ->
-      $scope.initLabel()
-
-  $scope.cancelLabel = ->
+  $scope.init = ->
     $scope.initLabel()
-    $scope.displayLabelEditor = false
 
+    Label.query {}, (labels) ->
+      $scope.labels = labels
 
-  Label.query {}, (labels) ->
-    $scope.labels = labels
+    Case.query {}, (cases) ->
+      $scope.cases = cases
 
-  Case.query {}, (cases) ->
-    $scope.cases = cases
-
-  $scope.initLabel()
+  $scope.init()

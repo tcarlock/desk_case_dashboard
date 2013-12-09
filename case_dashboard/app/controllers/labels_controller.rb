@@ -6,7 +6,19 @@ class LabelsController < ApplicationController
   end
 
   def create
-    binding.pry
-    API::Client.new.create_label params[:label]
+    # Allow multiple types
+    response = API::Client.new.create_label(
+      "name"=> params["name"],
+      "description"=> params["description"],
+      "enabled"=> params["enabled"],
+      "color"=> params["color"],
+      "types"=> [params["type"]],
+    )
+
+    if response.length == 0
+      head :bad_request
+    else
+      render json: response[0]
+    end
   end
 end

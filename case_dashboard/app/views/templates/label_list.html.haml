@@ -2,5 +2,6 @@
   %li(ng-repeat="label in labels")
     %span.label(class = "{{label.color}}") {{label.name}}
   %li
-    %a(ng-hide="displayLabelEditor" ng-click="showLabelEditor()") Add a Label
+    %a(ng-hide="displayLabelEditor" ng-click="showLabelEditor()")
+      %span.label.icon-tag &nbsp; Add a Label
 #label-adder-outer(ng-include="'/templates/label_adder'")

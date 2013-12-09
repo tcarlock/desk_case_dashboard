@@ -29,5 +29,6 @@
           %input(ng-model="newLabel.enabled" type="radio" value="false" id="disabled")
           %label(for="enabled") Disabled
       .row
+        %span {{saveStatus}}
         %a.button.tiny.success.pull-right(ng-click="saveLabel()") Save Label
         %a.button.tiny.pull-right(ng-click="cancelLabel()") Cancel
