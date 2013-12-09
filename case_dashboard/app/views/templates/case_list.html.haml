@@ -18,5 +18,4 @@
           %li(ng-repeat="label in case.labels")
             %span.label(class = "{{getLabelDetails(label).color}}") {{label}}
           %li
-            %i.label.icon-plus(ng-click="addLabel()")
-        %select(ng-options="label.name as label.name for label in labels")
+            %i.label.icon-plus(ng-click="addLabel(case.id)")

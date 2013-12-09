@@ -66,7 +66,7 @@ end
 
 describe "add label to case" do
   before do
-    expect(API::Client.connection).to receive(:request).with("PATCH", "#{API::Client.api_url}/case/1", { labels: 'test' }).and_return(response_double)
+    expect(API::Client.connection).to receive(:request).with(:patch, "#{API::Client.api_url}/case/1", { labels: 'test' }).and_return(response_double)
   end
 
   context "success response" do

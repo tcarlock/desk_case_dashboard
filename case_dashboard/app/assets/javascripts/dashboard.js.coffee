@@ -13,7 +13,7 @@ app.config ($locationProvider, $routeProvider) ->
 
   $routeProvider.when '/', templateUrl: '/templates/index', controller: 'IndexController'
 
-app.controller 'IndexController', ($scope, Case, Label, labelTypes, labelColors, $timeout) ->
+app.controller 'IndexController', ($scope, Case, Label, labelTypes, labelColors, $timeout, $http) ->
   $scope.view = 'manage_cases'
   $scope.displayLabelEditor = false
 
@@ -31,8 +31,14 @@ app.controller 'IndexController', ($scope, Case, Label, labelTypes, labelColors,
   $scope.viewId = (index) ->
     $scope.views[index].id
 
-  $scope.addLabel = ->
+  $scope.addLabel = (caseId) ->
+    console.log caseId
+    label_id = $scope.labels.filter((l) ->
+      l.name.toLowerCase() is 'prove it new'
+    )[0].id
 
+    $http.put "/api/cases/#{caseId}", { label_id: label_id }, (resp) ->
+      console.log resp
 
   $scope.getLabelDetails = (label) ->
     $scope.labels.filter((l) ->

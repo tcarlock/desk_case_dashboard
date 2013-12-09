@@ -7,6 +7,10 @@ class CasesController < ApplicationController
 
   def update
     # Assumes the only update is adding a new label and that the label will be appended (default API behavior)
-    API::Client.new.add_label_to_case params[:label]
+    if API::Client.new.add_label_to_case params[:id], params[:label_id]
+      head :ok
+    else
+      head :bad_request
+    end
   end
 end

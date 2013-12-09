@@ -4,4 +4,4 @@
   %li
     %a(ng-hide="displayLabelEditor" ng-click="showLabelEditor()")
       %span.label.icon-tag &nbsp; Add a Label
-#label-adder-outer(ng-include="'/templates/label_adder'")
+#label-adder-outer(ng-include="'/templates/label_adder'" ng-show="displayLabelEditor")

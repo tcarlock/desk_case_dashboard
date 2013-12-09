@@ -34,7 +34,7 @@ module API
     end
 
     def update_resource(resource, id, params)
-      response = Client.connection.request "PATCH", "#{API::Client.api_url}/#{resource}/#{id}", params
+      response = Client.connection.request :patch, "#{API::Client.api_url}/#{resource}/#{id}", params
 
       case response.code.to_i
       when (400..599)
