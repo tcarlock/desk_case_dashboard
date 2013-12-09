@@ -5,6 +5,7 @@ gem 'jquery-rails'
 gem 'oauth'
 gem 'hashie'
 gem 'thin'
+gem 'pg'
 
 group :assets do
   gem 'sass-rails'
