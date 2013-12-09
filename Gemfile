@@ -7,14 +7,12 @@ gem 'hashie'
 gem 'thin'
 gem 'pg'
 
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'font-awesome-rails', '~> 3.2.1'
-  gem 'uglifier'
-  gem 'haml'
-  gem 'foundation-rails'
-end
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'font-awesome-rails', '~> 3.2.1'
+gem 'uglifier'
+gem 'haml'
+gem 'foundation-rails'
 
 group :development, :test do
   gem 'rspec-rails'
