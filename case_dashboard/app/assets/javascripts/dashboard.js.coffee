@@ -1,6 +1,6 @@
 #= require ./dashboard.case
 
-app = angular.module 'dashboard', ['ngRoute', 'dashboard.case']
+app = angular.module 'dashboard', ['ngRoute', 'ngResource', 'dashboard.case']
 
 # Rails CSRF protection
 app.config ($httpProvider) ->

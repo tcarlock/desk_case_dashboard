@@ -77,9 +77,7 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     multi_json (1.8.2)
-    omniauth (1.1.4)
-      hashie (>= 1.2, < 3)
-      rack
+    oauth (0.4.7)
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -163,8 +161,9 @@ DEPENDENCIES
   coffee-rails
   foundation-rails
   haml
+  hashie
   jquery-rails
-  omniauth
+  oauth
   pry
   pry-debugger
   pry-rails

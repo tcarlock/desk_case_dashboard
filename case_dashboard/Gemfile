@@ -4,7 +4,8 @@ gem 'rails', '3.2.12'
 gem 'sqlite3'
 
 gem 'jquery-rails'
-gem 'omniauth'
+gem 'oauth'
+gem 'hashie'
 
 group :assets do
   gem 'sass-rails'
