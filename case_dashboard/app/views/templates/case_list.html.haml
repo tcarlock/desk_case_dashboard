@@ -1,0 +1,21 @@
+%table
+  %thead
+    %th ID
+    %th Subject
+    %th Status
+    %th Priority
+    %th Opened At
+    %th Labels
+  %tbody
+    %tr(ng-repeat="case in cases")
+      %td {{case.id}}
+      %td {{case.subject}}
+      %td {{case.status | uppercase}}
+      %td {{case.priority}}
+      %td {{case.first_opened_at | date: 'short'}}
+      %td
+        %ul.inline-list
+          %li(ng-repeat="label in case.labels")
+            %span.label(class = "{{getLabelDetails(label).color}}") {{label}}
+          %li
+            %i.label.icon-tag

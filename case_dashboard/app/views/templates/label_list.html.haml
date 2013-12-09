@@ -1,0 +1,13 @@
+%table
+  %thead
+    %th Name
+    %th
+  %tbody
+    %tr(ng-repeat="label in labels")
+      %td {{label.name}}
+      %td
+        %a.button.tiny.alert Tag this case
+
+%ul.inline-list
+  %li(ng-repeat="label in labels")
+    %span.label(class = "{{label.color}}") {{label.name}}

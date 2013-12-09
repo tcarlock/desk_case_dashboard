@@ -1,13 +1,11 @@
 class CasesController < ApplicationController
-  def index
+  respond_to :json
 
+  def index
+    render json: API::Client.new.cases
   end
 
   def update
-
-  end
-
-  def tag
 
   end
 end
