@@ -32,7 +32,6 @@ app.controller 'IndexController', ($scope, Case, Label, labelTypes, labelColors,
     $scope.views[index].id
 
   $scope.addLabel = (caseId) ->
-    console.log caseId
     label_id = $scope.labels.filter((l) ->
       l.name.toLowerCase() is 'prove it new'
     )[0].id
