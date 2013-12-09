@@ -13,17 +13,18 @@ app.config ($locationProvider, $routeProvider) ->
 
   $routeProvider.when '/', templateUrl: '/templates/index', controller: 'IndexController'
 
-app.controller 'IndexController', ($scope, Case, Label) ->
-  $scope.view = 'manage_cases'
+app.controller 'IndexController', ($scope, Case, Label, labelTypes, labelColors) ->
+  $scope.view = 'manage_labels'
+  $scope.displayLabelEditor = true
 
   $scope.views = [
     {
       id: 'manage_cases'
-      label: 'Manage Cases'
+      label: 'Cases'
     },
     {
       id: 'manage_labels'
-      label: 'Manage Labels'
+      label: 'Labels'
     }
   ]
 
@@ -35,8 +36,34 @@ app.controller 'IndexController', ($scope, Case, Label) ->
       l.name is label
     )[0]
 
+  $scope.showLabelEditor = ->
+    $scope.initLabel()
+    $scope.displayLabelEditor = true
+
+  $scope.labelColors = labelColors
+  $scope.labelTypes = labelTypes
+
+  $scope.initLabel = ->
+    $scope.newLabel =
+      name: ''
+      description: ''
+      enabled: 'true'
+      color: 'default'
+      type: 'case'
+
+  $scope.saveLabel = ->
+    Label.save $scope.newLabel, ->
+      $scope.initLabel()
+
+  $scope.cancelLabel = ->
+    $scope.initLabel()
+    $scope.displayLabelEditor = false
+
+
   Label.query {}, (labels) ->
     $scope.labels = labels
 
   Case.query {}, (cases) ->
     $scope.cases = cases
+
+  $scope.initLabel()

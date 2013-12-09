@@ -6,6 +6,7 @@ class LabelsController < ApplicationController
   end
 
   def create
+    binding.pry
     API::Client.new.create_label params[:label]
   end
 end

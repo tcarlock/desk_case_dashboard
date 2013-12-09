@@ -1,0 +1,33 @@
+%form(name="new-label" ng-show="displayLabelEditor")
+  .row
+    .small-8
+      .row
+        .small-3.columns
+          %label.right.inline Name
+        .small-9.columns
+          %input(ng-model="newLabel.name" type="text")
+      .row
+        .small-3.columns
+          %label.right.inline Description
+        .small-9.columns
+          %textarea(ng-model="newLabel.description" rows="6")
+      .row
+        .small-3.columns
+          %label.right.inline Color
+        .small-9.columns
+          %select(ng-model="newLabel.color" ng-options="color for color in labelColors")
+      .row
+        .small-3.columns
+          %label.right.inline Type
+        .small-9.columns
+          %select(ng-model="newLabel.type" ng-options="type for type in labelTypes")\
+      .row
+        .small-3.columns
+        .small-9.columns
+          %input(ng-model="newLabel.enabled" type="radio" value="true" id="enabled")
+          %label(for="enabled") Enabled
+          %input(ng-model="newLabel.enabled" type="radio" value="false" id="disabled")
+          %label(for="enabled") Disabled
+      .row
+        %a.button.tiny.success.pull-right(ng-click="saveLabel()") Save Label
+        %a.button.tiny.pull-right(ng-click="cancelLabel()") Cancel

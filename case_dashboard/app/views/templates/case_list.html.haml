@@ -4,7 +4,7 @@
     %th Subject
     %th Status
     %th Priority
-    %th Opened At
+    %th Received
     %th Labels
   %tbody
     %tr(ng-repeat="case in cases")
@@ -12,7 +12,7 @@
       %td {{case.subject}}
       %td {{case.status | uppercase}}
       %td {{case.priority}}
-      %td {{case.first_opened_at | date: 'short'}}
+      %td {{case.received_at | date: 'short'}}
       %td
         %ul.inline-list
           %li(ng-repeat="label in case.labels")

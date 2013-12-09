@@ -1,13 +1,14 @@
 .row
+  %hr
   .large-12.columns
-    %h4.header
-      Case Management Dashboard &gt;&gt; Logged into #{API::Client.subdomain}
-    %hr
+    .small-7.columns
+      %h4.header Desk.com Dashboard for #{API::Client.subdomain}
+    .small-2.columns
+      %label.inline(for="right-label") Current View:
+    .small-3.columns
+      %select(ng-model="view" ng-options="view.id as view.label for view in views")
+  %hr
 .row
-  .small-2.columns
-    %label.inline(for="right-label") Select a View:
-  .small-3.columns
-    %select(ng-model="view" ng-options="view.id as view.label for view in views")
   .small-7.columns
 .row(ng-switch on="view")
   .large-12.columns(ng-switch-when="manage_labels")
