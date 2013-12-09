@@ -6,6 +6,6 @@ class LabelsController < ApplicationController
   end
 
   def create
-
+    API::Client.new.create_label params[:label]
   end
 end

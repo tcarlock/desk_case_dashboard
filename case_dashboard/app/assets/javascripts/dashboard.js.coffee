@@ -31,8 +31,9 @@ app.controller 'IndexController', ($scope, Case, Label) ->
     $scope.views[index].id
 
   $scope.getLabelDetails = (label) ->
-    console.log ($scope.labels.filter (l) -> label.name is label)
-    label for label in $scope.labels when label.name is label
+    $scope.labels.filter((l) ->
+      l.name is label
+    )[0]
 
   Label.query {}, (labels) ->
     $scope.labels = labels

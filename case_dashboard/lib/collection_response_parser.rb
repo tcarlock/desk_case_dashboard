@@ -8,5 +8,7 @@ class CollectionResponseParser
 
       results << entry_obj
     end
+
+    results
   end
 end

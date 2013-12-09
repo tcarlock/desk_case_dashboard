@@ -6,6 +6,6 @@ class CasesController < ApplicationController
   end
 
   def update
-
+    API::Client.new.add_label_to_case params[:label]
   end
 end

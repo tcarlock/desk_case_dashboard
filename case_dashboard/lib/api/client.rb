@@ -11,18 +11,29 @@ module API
       get_list :labels
     end
 
-    # def case(id)
-    #   get_item :case, id
+    # def create_label(id, label)
+    #   update_resource :case, { labels: label }
     # end
 
-    def tag_case(id, tag)
-
+    def add_label_to_case(id, label)
+      update_resource :case, id, { labels: label }
     end
 
     protected
 
-    def get_list(resource, params = {})
-      response = Client.connection.get("#{API::Client.api_url}/#{resource}")
+    def update_resource(resource, id, params)
+      response = Client.connection.request "PATCH", "#{API::Client.api_url}/#{resource}/#{id}", params
+
+      case response.code.to_i
+      when (400..599)
+        false
+      when 200
+        true
+      end
+    end
+
+    def get_list(resource)
+      response = Client.connection.get "#{API::Client.api_url}/#{resource}"
 
       case response.code.to_i
       when 404
