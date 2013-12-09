@@ -1,6 +1,6 @@
 CaseDashboard::Application.routes.draw do
 
-  namespace :api do
+  scope 'api', defaults: { format: :json } do
     resources :cases, only: [:index, :update]
     resources :labels, only: [:index, :create]
   end
