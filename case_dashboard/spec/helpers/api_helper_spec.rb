@@ -3,5 +3,5 @@ def cases_json_double
 end
 
 def new_label_double
-  @new_label_double ||= '{"name":"MyLabel","description":"A Test Label", "types": ["case", "macro"], "color": "blue"}'
+  @new_label_double ||= "{\"name\":\"MyLabel\",\"description\":\"A Test Label\",\"enabled\":true,\"types\":[\"case\"],\"color\":\"blue\",\"_links\":{\"self\":{\"href\":\"/api/v2/labels/1590926\",\"class\":\"label\"}}}"
 end

@@ -29,7 +29,7 @@ module API
         []
       when 201
         response = JSON.parse(response.body)
-        ::CollectionResponseParser.send "parse_#{resource}", [response]
+        ::CollectionResponseParser.parse [response]
       end
     end
 
@@ -52,7 +52,7 @@ module API
         return []
       when 200
         response = JSON.parse(response.body)
-        ::CollectionResponseParser.send "parse_#{resource}", response["_embedded"]["entries"]
+        ::CollectionResponseParser.parse response["_embedded"]["entries"]
       end
     end
   end

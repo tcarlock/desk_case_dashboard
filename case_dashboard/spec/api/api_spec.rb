@@ -14,7 +14,7 @@ describe "get cases" do
       API::Client.new.cases
     end
 
-    it "should invoke .parse_cases on parser service class" do
+    it "should invoke .parse on parser service class" do
       stubbed_hash = {
         "_embedded" => {
           "entries" => []
@@ -24,8 +24,8 @@ describe "get cases" do
       parsed_cases = double
 
       JSON.stub(:parse).and_return(stubbed_hash)
-      CollectionResponseParser.stub(:parse_cases).and_return(parsed_cases)
-      expect(CollectionResponseParser).to receive(:parse_cases).with(stubbed_hash["_embedded"]["entries"])
+      CollectionResponseParser.stub(:parse).and_return(parsed_cases)
+      expect(CollectionResponseParser).to receive(:parse).with(stubbed_hash["_embedded"]["entries"])
 
       API::Client.new.cases.should eq(parsed_cases)
     end
@@ -33,7 +33,7 @@ describe "get cases" do
 end
 
 describe "create new label" do
-  let(:label_params) { {"name" => "MyLabel", "description" => "A Test Label", "types" =>  ["case", "macro"], "color" =>  "blue"} }
+  let(:label_params) { {"name" => "MyLabel", "description" => "A Test Label", "types" =>  ["case"], "color" =>  "blue"} }
 
   before do
     expect(API::Client.connection).to receive(:post).with("#{API::Client.api_url}/labels", label_params.to_json).and_return(response_double)
@@ -105,7 +105,7 @@ describe "CollectionResponseParser" do
       }
     }]
 
-    CollectionResponseParser.parse_cases(stubbed_hash).first.subject.should eq("test")
-    CollectionResponseParser.parse_cases(stubbed_hash).first.id.should eq(1)
+    CollectionResponseParser.parse(stubbed_hash).first.subject.should eq("test")
+    CollectionResponseParser.parse(stubbed_hash).first.id.should eq(1)
   end
 end

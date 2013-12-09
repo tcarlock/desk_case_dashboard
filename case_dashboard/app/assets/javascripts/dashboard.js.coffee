@@ -14,7 +14,7 @@ app.config ($locationProvider, $routeProvider) ->
   $routeProvider.when '/', templateUrl: '/templates/index', controller: 'IndexController'
 
 app.controller 'IndexController', ($scope, Case, Label, labelTypes, labelColors, $timeout) ->
-  $scope.view = 'manage_labels'
+  $scope.view = 'manage_cases'
   $scope.displayLabelEditor = false
 
   $scope.views = [
@@ -30,6 +30,9 @@ app.controller 'IndexController', ($scope, Case, Label, labelTypes, labelColors,
 
   $scope.viewId = (index) ->
     $scope.views[index].id
+
+  $scope.addLabel = ->
+
 
   $scope.getLabelDetails = (label) ->
     $scope.labels.filter((l) ->
