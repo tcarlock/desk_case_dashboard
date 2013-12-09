@@ -4,10 +4,12 @@ module API
     extend Connection
 
     def cases
+      #TODO: This will limit the results to 50 which is ok with current test data; implement paging
       get_list :cases
     end
 
     def labels
+      #TODO: This will limit the results to 50 which is ok with current test data; implement paging
       get_list :labels
     end
 
@@ -34,6 +36,7 @@ module API
     end
 
     def update_resource(resource, id, params)
+      # TODO: PATCH is not supported in this version of oauth; look into monkeypatching the gem or using another gem
       response = Client.connection.request :patch, "#{API::Client.api_url}/#{resource}/#{id}", params
 
       case response.code.to_i
